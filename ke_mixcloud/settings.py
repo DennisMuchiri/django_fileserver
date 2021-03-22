@@ -40,8 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'rest_framework',
+    'rest_framework_swagger',
+
+    'apps.authentication',
     'apps.setup',
-    'apps.ke_mixcloud_core'
+
 ]
 
 MIDDLEWARE = [
@@ -130,3 +134,29 @@ STATIC_URL = '/static/'
 
 # custom user model
 AUTH_USER_MODEL = 'authentication.CustomUser'
+
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/2.2/howto/static-files/
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'ke_mixcloud/static')
+]
+
+#Media folder settings
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'
+
+#Authentication
+REST_FRAMEWORK = {
+  'EXCEPTION_HANDLER': 'apps.ke_mixcloud_core.exceptions.core_exception_handler',
+  'NON_FIELD_ERRORS_KEY': 'error',
+  'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+  'DEFAULT_AUTHENTICATION_CLASSES': (
+      'rest_framework.authentication.BasicAuthentication',
+      'rest_framework.authentication.SessionAuthentication',
+  ),
+  'PAGE_SIZE': 10
+}

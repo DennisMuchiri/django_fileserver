@@ -60,8 +60,9 @@ pip3 install -r requirements.txt
 #SCREEN
 Use screen to create a new virtual window, and run the server there.
 $ screen
-$ python manage.py runserver
+$ python3 manage.py runserver
 python manage.py migrate
+pip3 install django-rest-swagger
 
 You will see that Django server has started running.
 
@@ -79,6 +80,6 @@ To kill the django server now, simply press Ctrl+C like you would've done normal
 #END OF SCREEN
 
 #To migrate
-python manage.py makemigrations
-python manage.py migrate
-python manage.py showmigrations
+python3 manage.py makemigrations
+python3 manage.py migrate
+python3 manage.py showmigrations

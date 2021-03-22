@@ -1,8 +1,5 @@
 from rest_framework import serializers
 
-from apps.authentication.models import CustomUser
-from datetime import datetime, date
-
 from apps.setup.models import MyFile
 
 
@@ -12,6 +9,8 @@ class MyFileSerializer(serializers.ModelSerializer):
     filepath = serializers.CharField(required=True)
     updated_by = serializers.CharField(required=False)
     uuid = serializers.UUIDField(required=True)
+    created_by_uuid = serializers.UUIDField(required=True)
+    updated_by_uuid = serializers.UUIDField(required=False)
 
     class Meta:
         model = MyFile

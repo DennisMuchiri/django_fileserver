@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from .helpers.audit_actions import log_addition, log_change, log_deletion, log_permanent_deletion
+from django.db.models import Q, UniqueConstraint, Case, F, Value, When, DecimalField
 
 
 class TimestampedModel(models.Model):
@@ -104,3 +105,13 @@ class CapitalizeField(models.CharField):
             return value
         else:
             return super(CapitalizeField, self).pre_save(model_instance, add)
+
+
+def get_default_systemuser():
+    customsystemUser = None
+    queryCustomsystemUser = Q(username='SYSTEM')
+    from apps.authentication.models import CustomUser
+    customsystemUser_queryset = CustomUser.objects.filter(queryCustomsystemUser)
+    if customsystemUser_queryset.count() > 0:
+        customsystemUser = customsystemUser_queryset[0].id
+    return customsystemUser

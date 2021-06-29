@@ -27,7 +27,7 @@ SECRET_KEY = '30f4!r36o_3w1@fl0793o8lp^x+0^$@@!b=p-!_e2wt#k6jcmj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.0.104', '192.168.0.109']
 
 
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_swagger',
 
+    'apps.ke_mixcloud_core',
     'apps.authentication',
     'apps.setup',
 
@@ -160,3 +161,6 @@ REST_FRAMEWORK = {
   ),
   'PAGE_SIZE': 10
 }
+
+# to disable the check
+DATA_UPLOAD_MAX_NUMBER_FIELDS = None

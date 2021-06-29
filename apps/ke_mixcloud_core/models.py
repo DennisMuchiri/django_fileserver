@@ -36,14 +36,17 @@ class AbstractBase(TimestampedModel):
         help_text="This is to make sure deletes are not actual deletes")
     permanent_delete = models.BooleanField(default=False,
                                            help_text="This false deletes items from recycle bin")
-    audit_trail_user = models.ForeignKey('authentication.CustomUser',related_name="%(app_label)s_%(class)s_related_audit_trail_user",
+    audit_trail_user = models.ForeignKey('authentication.CustomUser', related_name="%(app_label)s_%(class)s_related_audit_trail_user",
                                          on_delete=models.DO_NOTHING, blank=True,
                                          null=True, editable=False)
-    created_by = models.ForeignKey('authentication.CustomUser', related_name="%(app_label)s_%(class)s_related",
+    created_by = models.ForeignKey('authentication.CustomUser', related_name="%(app_label)s_%(class)s_related_created_by",
                                    on_delete=models.DO_NOTHING, blank=True, null=True)
-    updated_by = models.ForeignKey('authentication.CustomUser',related_name="%(app_label)s_%(class)s_related_updated_by",
+    updated_by = models.ForeignKey('authentication.CustomUser', related_name="%(app_label)s_%(class)s_related_updated_by",
                                    on_delete=models.DO_NOTHING, blank=True, null=True)
     # everything will be used to query deleted objects e.g Model.everything.all()
+    #%(app_label)s_%(class)s_related_audit_trail_user
+    #related_name="%(app_label)s_%(class)s_related",
+    #"%(app_label)s_%(class)s_related_updated_by"
     everything = models.Manager()
     objects = CustomManager()
     trash = DeletedManager()

@@ -9,7 +9,7 @@ from rest_framework.permissions import IsAuthenticated
 from dateutil.relativedelta import relativedelta
 from datetime import datetime, date
 from rest_framework import generics, viewsets, serializers, filters, status
-from apps.authentication.models import CustomUser
+
 from django.db.models import Q
 from django.core import serializers
 from rest_framework.response import Response
